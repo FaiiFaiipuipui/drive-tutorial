@@ -7,11 +7,12 @@ This is a Google Drive clone based on [Theo's Tutorial](https://www.youtube.com/
 - [x] Set-up database and data model
 - [x] Move folder open state to URL
 - [x] Add auth
-- [ ] Add file uploading
+- [x] Add file uploading
 - [ ] Add analytics
 
-## 29-07-2025 (20:41)
+## 30-07-2025 (14:56)
 
-- [x] Change folders to link components, move all client state
-- [x] Clean up the database and data fetching patterns
 - [ ] Real homepage
+- [ ] Upload files to the right folder
+- [ ] Delete files button
+- [ ] Allow files that aren't images to be uploaded

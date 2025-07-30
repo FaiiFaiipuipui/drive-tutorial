@@ -13,5 +13,5 @@ This is a Google Drive clone based on [Theo's Tutorial](https://www.youtube.com/
 ## 29-07-2025 (20:41)
 
 - [x] Change folders to link components, move all client state
-- [ ] Clean up the database and data fetching patterns
+- [x] Clean up the database and data fetching patterns
 - [ ] Real homepage

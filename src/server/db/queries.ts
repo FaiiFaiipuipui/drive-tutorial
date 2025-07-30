@@ -12,7 +12,7 @@ export const QUERIES = {
   getAllParentsForFolder: async function (folderId: bigint) {
     const parents = [];
     let currentId = folderId;
-    while (currentId !== null) {
+    while (currentId !== BigInt(3377699720527873n)) {
       const folder = await db
         .selectDistinct()
         .from(folderSchema)
@@ -28,6 +28,14 @@ export const QUERIES = {
       currentId = folder[0].parent!;
     }
     return parents;
+  },
+
+  getFolderById: async function (folderId: bigint) {
+    const folder = await db
+      .select()
+      .from(folderSchema)
+      .where(eq(folderSchema.id, folderId));
+    return folder[0];
   },
 
   getFolders: async function (folderId: bigint) {
@@ -50,6 +58,8 @@ export const MUTATIONS = {
     file: { name: string; size: number; url: string; parent: bigint };
     userId: string;
   }) {
-    return await db.insert(filesSchema).values({...input.file, parent: BigInt(1)});
+    return await db
+      .insert(filesSchema)
+      .values({ ...input.file, ownerId: input.userId });
   },
 };

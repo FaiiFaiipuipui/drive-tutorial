@@ -10,9 +10,10 @@ This is a Google Drive clone based on [Theo's Tutorial](https://www.youtube.com/
 - [x] Add file uploading
 - [ ] Add analytics
 
-## 30-07-2025 (14:56)
+## 30-07-2025 (17:01)
 
-- [ ] Real homepage
-- [ ] Upload files to the right folder
+- [x] Add "ownership" to files and folders
+- [x] Upload files to the right folder
 - [ ] Delete files button
 - [ ] Allow files that aren't images to be uploaded
+- [ ] Real homepage

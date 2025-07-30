@@ -1,3 +1,5 @@
+import "server-only";
+
 import { db } from "~/server/db";
 import {
   files_table as filesSchema,
@@ -5,37 +7,39 @@ import {
 } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 
-export async function getAllParentsForFolder(folderId: bigint) {
-  const parents = [];
-  let currentId = folderId;
-  while (currentId !== null) {
-    const folder = await db
-      .selectDistinct()
-      .from(folderSchema)
-      .where(eq(folderSchema.id, currentId));
+export const QUERIES = {
+  getAllParentsForFolder: async function (folderId: bigint) {
+    const parents = [];
+    let currentId = folderId;
+    while (currentId !== null) {
+      const folder = await db
+        .selectDistinct()
+        .from(folderSchema)
+        .where(eq(folderSchema.id, currentId));
 
-    console.log(folder);
+      console.log(folder);
 
-    if (!folder[0]) {
-      throw new Error("Folder not found");
+      if (!folder[0]) {
+        throw new Error("Folder not found");
+      }
+
+      parents.unshift(folder[0]);
+      currentId = folder[0].parent!;
     }
+    return parents;
+  },
 
-    parents.unshift(folder[0]);
-    currentId = folder[0].parent!;
-  }
-  return parents;
-}
+  getFolders: async function (folderId: bigint) {
+    return db
+      .select()
+      .from(folderSchema)
+      .where(eq(folderSchema.parent, BigInt(folderId)));
+  },
 
-export async function getFolders(folderId: bigint) {
-  return db
-    .select()
-    .from(folderSchema)
-    .where(eq(folderSchema.parent, BigInt(folderId)));
-}
-
-export async function getFiles(folderId: bigint) {
-  return db
-    .select()
-    .from(filesSchema)
-    .where(eq(filesSchema.parent, BigInt(folderId)));
-}
+  getFiles: async function (folderId: bigint) {
+    return db
+      .select()
+      .from(filesSchema)
+      .where(eq(filesSchema.parent, BigInt(folderId)));
+  },
+};

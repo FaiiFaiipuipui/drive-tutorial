@@ -42,14 +42,14 @@ export const QUERIES = {
     return db
       .select()
       .from(folderSchema)
-      .where(eq(folderSchema.parent, BigInt(folderId)));
+      .where(eq(folderSchema.parent, BigInt(folderId))).orderBy(folderSchema.id);
   },
 
   getFiles: async function (folderId: bigint) {
     return db
       .select()
       .from(filesSchema)
-      .where(eq(filesSchema.parent, BigInt(folderId)));
+      .where(eq(filesSchema.parent, BigInt(folderId))).orderBy(filesSchema.id);
   },
 };
 

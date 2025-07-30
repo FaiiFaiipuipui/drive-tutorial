@@ -8,6 +8,7 @@ This is a Google Drive clone based on [Theo's Tutorial](https://www.youtube.com/
 - [x] Move folder open state to URL
 - [x] Add auth
 - [x] Add file uploading
-- [ ] Add analytics
+- [x] Add analytics
+- [x] Make sure sort order is consistent
 - [ ] Delete files button
 - [ ] Real homepage + Onboarding
